@@ -1,4 +1,4 @@
-//% color=#fff609 weight=50 icon="\uf089"  block="Transparency"
+//% color=#1B9AAA weight=1 icon="\uf2a8"  block="Transparency"
 namespace transparency {
     const transparencyPlaceholder = image.create(1, 1);
     let transparentSprites = [sprites.create(transparencyPlaceholder)];
