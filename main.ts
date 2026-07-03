@@ -52,7 +52,18 @@ namespace transparency {
         let newx = x % 16
         let newy = y % 16
         let tile = tiles.getTileAt(x / 16, y / 16);
-        return (tile.getPixel(newx, newy));
+        if (tile) {
+            if (tile.getPixel(newx, newy) != 0) {
+                return (tile.getPixel(newx, newy));
+            }
+        }
+        if (scene.backgroundImage() && scene.backgroundImage().getPixel(newx, newy) != 0) {
+            return (scene.backgroundImage().getPixel(newx, newy));
+        }
+        if (scene.backgroundColor() && scene.backgroundColor() != 0) {
+            return (scene.backgroundColor());
+        }
+        return (15);
     }
 
     function updateTransparency() {
@@ -70,14 +81,14 @@ namespace transparency {
                             //s.image.setPixel(x, y, getColor(Math.round(s.x) + x - (Math.ceil(s.image.width/2)), Math.round(s.y) + y - Math.ceil(s.image.height/2)))
                             let tempNum2 = getColor(Math.round(s.x) + x - (Math.ceil(s.image.width / 2)), Math.round(s.y) + y - Math.ceil(s.image.height / 2)) - 1
                             let to = pal[tempNum2];
-                            if (tempNum2 == -1) {
+                            /*if (tempNum2 == -1) {
                                 if (scene.backgroundColor()) {
                                     to = pal[scene.backgroundColor() - 1];
                                 }
                                 else {
                                     to = pal[14];
                                 }
-                            }
+                            }*/
 
                             let mix = [(color[0] + to[0]) / 2, (color[1] + to[1]) / 2, (color[2] + to[2]) / 2];
                             let distance = 500;
