@@ -69,7 +69,6 @@ namespace transparency {
     function updateTransparency() {
         for (let i = 0; i < transparentSprites.length; i++) {
             if (transparentSprites[i]) {
-                console.log("Transparency updated");
                 let s = transparentSprites[i];
 
                 //now loop through image
